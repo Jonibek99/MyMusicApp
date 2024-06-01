@@ -7,6 +7,5 @@ data class Music(
     val description: String,
     val founders: List<String>,
     val gender: String,
-    val size: Int,
-    val price: Double,
+    val duration: Int
     )

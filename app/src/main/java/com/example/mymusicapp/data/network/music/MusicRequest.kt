@@ -11,10 +11,8 @@ data class MusicRequest(
     val description: String?,
     @SerializedName("text_list")
     val founders: List<String>,
-    @SerializedName("price")
-    val price: Double,
-    @SerializedName("size")
-    val size: Int,
+    @SerializedName("age")
+    val duration: Int,
     @SerializedName("color")
     val gender: String
 )

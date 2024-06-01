@@ -7,8 +7,7 @@
     <string name="title_activity_add_new_Music">Add\n\n</string>
     <string name="Music_name_input_hint">Enter music title</string>
     <string name="Music_desc_input_hint">Enter Music Description\n</string>
-    <string name="music_price_input_hint">Enter cost of music</string>
-    <string name="music_size_input_hint">Enter size</string>
+    <string name="music_duration_input_hint">Enter duration</string>
     <string name="Music_gender_input_hint">Enter gender</string>
     <string name="add_new_founders_input_hint">Add founders</string>
     <string name="Music_all_fields_compulsory_warning">All fields are compulsory!</string>

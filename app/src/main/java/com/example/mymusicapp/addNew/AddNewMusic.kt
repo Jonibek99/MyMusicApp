@@ -39,10 +39,9 @@ fun AddNewMusic(
 
     val title = remember { mutableStateOf("") }
     val description = remember { mutableStateOf("") }
-    val price = remember { mutableStateOf("") }
     val gender = remember{ mutableStateOf("") }
     val founders = remember { mutableStateOf("") }
-    val size = remember { mutableStateOf("") }
+    val duration = remember { mutableStateOf("") }
 
     val response by viewModel.insertResponseLiveData.observeAsState()
 
@@ -61,13 +60,12 @@ fun AddNewMusic(
             DescriptionInput(description = description.value,
                 onDescriptionChange = { description.value = it })
             Spacer(modifier = Modifier.height(15.dp))
-            Price(price = price.value, onPriceChanged = { price.value = it })
             Spacer(modifier = Modifier.height(15.dp))
             Gender(gender = gender.value, onGenderChange = { gender.value = it })
             Spacer(modifier = Modifier.height(15.dp))
             FoundersInput(founders = founders.value, onFoundersChange = { founders.value = it })
             Spacer(modifier = Modifier.height(15.dp))
-            Size(size = size.value, onSizeChanged = { size.value = it })
+            Duration(duration = duration.value, onDurationChanged = { duration.value = it })
             Spacer(modifier = Modifier.height(15.dp))
 
             // actors text input - comma separated 4x
@@ -77,10 +75,9 @@ fun AddNewMusic(
                 val constructedMusic: Music? = constructMusicIfInputValid(
                     titleInput = title.value,
                     descriptionInput = description.value,
-                    priceInput = price.value,
                     genderInput = gender.value,
                     foundersInput = founders.value,
-                    sizeInput = size.value,
+                    durationInput = duration.value,
 
                     context = localContext
                 )
@@ -200,31 +197,16 @@ private fun Gender(gender: String, onGenderChange: (String) -> Unit) {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun Price(price: String, onPriceChanged: (String) -> Unit) {
+private fun Duration(duration: String, onDurationChanged: (String) -> Unit) {
     TextField(modifier = Modifier.fillMaxWidth(),
         colors = TextFieldDefaults.textFieldColors(
             textColor = Color.Black, containerColor = colorResource(id = R.color.teal_200)
         ),
-        value = price,
+        value = duration,
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-        onValueChange = { onPriceChanged(it) },
+        onValueChange = { onDurationChanged(it) },
         label = {
-            Text(stringResource(id = R.string.music_price_input_hint))
-        })
-}
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-private fun Size(size: String, onSizeChanged: (String) -> Unit) {
-    TextField(modifier = Modifier.fillMaxWidth(),
-        colors = TextFieldDefaults.textFieldColors(
-            textColor = Color.Black, containerColor = colorResource(id = R.color.teal_200)
-        ),
-        value = size,
-        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-        onValueChange = { onSizeChanged(it) },
-        label = {
-            Text(stringResource(id = R.string.music_size_input_hint))
+            Text(stringResource(id = R.string.music_duration_input_hint))
         })
 }
 
@@ -253,18 +235,16 @@ private fun AddNewButton(onClick: () -> Unit) {
 private fun constructMusicIfInputValid(
     titleInput: String?,
     descriptionInput: String?,
-    priceInput: String?,
     genderInput: String,
     foundersInput: String?,
-    sizeInput: String?,
+    durationInput: String?,
     context: Context
 ): Music? {
     if (titleInput.isNullOrEmpty() ||
         descriptionInput.isNullOrEmpty() ||
-        priceInput.isNullOrEmpty() ||
         genderInput.isNullOrEmpty() ||
         foundersInput.isNullOrEmpty() ||
-        sizeInput.isNullOrEmpty()
+        durationInput.isNullOrEmpty()
     ) {
         Toast.makeText(
             context, context.resources.getString(R.string.Music_all_fields_compulsory_warning),
@@ -277,9 +257,8 @@ private fun constructMusicIfInputValid(
     return Music(
         title = titleInput,
         description = descriptionInput,
-        price = priceInput.toDouble(),
         founders = foundersInput.split(","),
         gender = genderInput,
-        size = sizeInput.toInt()
+        duration = durationInput.toInt()
     )
 }

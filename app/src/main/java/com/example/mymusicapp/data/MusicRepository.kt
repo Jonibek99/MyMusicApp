@@ -17,10 +17,10 @@ class MusicRepository {
 
             val response: MyListResponse<MusicResponse> =
                 RetrofitInstance.musicService.getAllMusic("09974")
-            val musicFromResponse = response.data
+            val musicsFromResponse = response.data
 
-            if (musicFromResponse != null) {
-                for (musicFromResponse in musicFromResponse) {
+            if (musicsFromResponse != null) {
+                for (musicFromResponse in musicsFromResponse) {
                     if (musicFromResponse.description != null) {
                         music.add(
                             Music(
@@ -29,8 +29,8 @@ class MusicRepository {
                                 description = musicFromResponse.description.toString(),
                                 founders = musicFromResponse.founders as List<String>,
                                 gender = musicFromResponse.gender,
-                                size = musicFromResponse.size,
-                                price = musicFromResponse.price
+                                duration = musicFromResponse.duration,
+
                             )
                         )
                     }
@@ -54,8 +54,7 @@ class MusicRepository {
                     description = music.description,
                     founders = music.founders,
                     gender = music.gender,
-                    price = music.price,
-                    size = music.size
+                    duration = music.duration
                 )
 
             response = RetrofitInstance.musicService.insertNewMusic(
@@ -86,9 +85,8 @@ class MusicRepository {
                         title = musicFromResponse.name,
                         description = musicFromResponse.description,
                         founders = extractListOfFoundersFromResponse(musicFromResponse.founders),
-                        price = musicFromResponse.price,
                         gender = musicFromResponse.gender,
-                        size = musicFromResponse.size
+                        duration = musicFromResponse.duration
                     )
                 }
             }

@@ -34,7 +34,7 @@ fun DetailedView(musicId: String,
     val music by viewModel.musicLiveData.observeAsState()
 
     if(music != null)
-    Column(
+        Column(
         modifier = Modifier
         .fillMaxWidth().background(colorResource(R.color.teal_200b))
         .padding(16.dp)) {
@@ -52,8 +52,7 @@ fun DetailedView(musicId: String,
         Text("Founders: ")
         Founders(founders =  music!!.founders)
         Gender(gender = music!!.gender)
-        Size(size = music!!.size)
-        Price(price = music!!.price)
+        Duration(duration = music!!.duration)
 
     }
 }
@@ -114,9 +113,9 @@ fun Gender (gender: String){
 }
 
 @Composable
-fun Size (size: Int){
+fun Duration (duration: Int){
     Text(
-        text = "Size: $size",
+        text = "Duration: $duration",
         color = Color.Black,
         fontSize = 20.sp,
         fontFamily = FontFamily.Serif,
@@ -126,16 +125,7 @@ fun Size (size: Int){
 
 
 
-@Composable
-fun Price (price: Double){
-    Text(
-        text = "Price: $$price",
-        color = Color.Black,
-        fontSize = 17.sp,
-        fontFamily = FontFamily.Serif,
-        textAlign = TextAlign.Center
-    )
-}
+
 
 @Composable
 private fun FoundersTextView(founder: String, isTheLastOne: Boolean) {
