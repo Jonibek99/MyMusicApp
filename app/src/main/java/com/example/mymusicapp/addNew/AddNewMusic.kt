@@ -39,8 +39,8 @@ fun AddNewMusic(
 
     val title = remember { mutableStateOf("") }
     val description = remember { mutableStateOf("") }
-    val gender = remember{ mutableStateOf("") }
-    val founders = remember { mutableStateOf("") }
+    val genre = remember{ mutableStateOf("") }
+    val artists = remember { mutableStateOf("") }
     val duration = remember { mutableStateOf("") }
 
     val response by viewModel.insertResponseLiveData.observeAsState()
@@ -61,9 +61,9 @@ fun AddNewMusic(
                 onDescriptionChange = { description.value = it })
             Spacer(modifier = Modifier.height(15.dp))
             Spacer(modifier = Modifier.height(15.dp))
-            Gender(gender = gender.value, onGenderChange = { gender.value = it })
+            Genre(genre = genre.value, onGenreChange = { genre.value = it })
             Spacer(modifier = Modifier.height(15.dp))
-            FoundersInput(founders = founders.value, onFoundersChange = { founders.value = it })
+            ArtistsInput(artists = artists.value, onArtistsChange = { artists.value = it })
             Spacer(modifier = Modifier.height(15.dp))
             Duration(duration = duration.value, onDurationChanged = { duration.value = it })
             Spacer(modifier = Modifier.height(15.dp))
@@ -75,8 +75,8 @@ fun AddNewMusic(
                 val constructedMusic: Music? = constructMusicIfInputValid(
                     titleInput = title.value,
                     descriptionInput = description.value,
-                    genderInput = gender.value,
-                    foundersInput = founders.value,
+                    genreInput = genre.value,
+                    artistsInput = artists.value,
                     durationInput = duration.value,
 
                     context = localContext
@@ -160,7 +160,7 @@ private fun DescriptionInput(description: String, onDescriptionChange: (String) 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun FoundersInput(founders: String, onFoundersChange: (String) -> Unit) {
+private fun ArtistsInput(artists: String, onArtistsChange: (String) -> Unit) {
     TextField(
         modifier = Modifier
             .fillMaxWidth()
@@ -169,11 +169,11 @@ private fun FoundersInput(founders: String, onFoundersChange: (String) -> Unit) 
             textColor = Color.Black,
             containerColor = colorResource(id = R.color.teal_200)
         ),
-        value = founders,
+        value = artists,
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
-        onValueChange = { onFoundersChange(it) },
+        onValueChange = { onArtistsChange(it) },
         label = {
-            Text(stringResource(id = R.string.add_new_founders_input_hint))
+            Text(stringResource(id = R.string.add_new_artists_input_hint))
         }
     )
 }
@@ -181,16 +181,16 @@ private fun FoundersInput(founders: String, onFoundersChange: (String) -> Unit) 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun Gender(gender: String, onGenderChange: (String) -> Unit) {
+private fun Genre(genre: String, onGenreChange: (String) -> Unit) {
     TextField(modifier = Modifier.fillMaxWidth(),
         colors = TextFieldDefaults.textFieldColors(
             textColor = Color.Black, containerColor = colorResource(id = R.color.teal_200)
         ),
-        value = gender,
+        value = genre,
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
-        onValueChange = { onGenderChange(it) },
+        onValueChange = { onGenreChange(it) },
         label = {
-            Text(stringResource(id = R.string.Music_gender_input_hint))
+            Text(stringResource(id = R.string.Music_genre_input_hint))
         })
 }
 
@@ -235,15 +235,15 @@ private fun AddNewButton(onClick: () -> Unit) {
 private fun constructMusicIfInputValid(
     titleInput: String?,
     descriptionInput: String?,
-    genderInput: String,
-    foundersInput: String?,
+    genreInput: String,
+    artistsInput: String?,
     durationInput: String?,
     context: Context
 ): Music? {
     if (titleInput.isNullOrEmpty() ||
         descriptionInput.isNullOrEmpty() ||
-        genderInput.isNullOrEmpty() ||
-        foundersInput.isNullOrEmpty() ||
+        genreInput.isNullOrEmpty() ||
+        artistsInput.isNullOrEmpty() ||
         durationInput.isNullOrEmpty()
     ) {
         Toast.makeText(
@@ -257,8 +257,8 @@ private fun constructMusicIfInputValid(
     return Music(
         title = titleInput,
         description = descriptionInput,
-        founders = foundersInput.split(","),
-        gender = genderInput,
+        artists = artistsInput.split(","),
+        genre = genreInput,
         duration = durationInput.toInt()
     )
 }

@@ -7,7 +7,7 @@ import com.example.mymusicapp.data.network.response.MyListResponse
 import com.example.mymusicapp.data.network.response.MyResponse
 import com.example.mymusicapp.data.network.music.MusicRequest
 import com.example.mymusicapp.data.network.music.MusicResponse
-import com.example.mymusicapp.data.network.music.MusicResponseFounderItem
+import com.example.mymusicapp.data.network.music.MusicResponseArtistItem
 import com.example.mymusicapp.models.Music
 class MusicRepository {
     suspend fun getMusicList(): List<Music> {
@@ -27,8 +27,8 @@ class MusicRepository {
                                 id = musicFromResponse.id.toString(),
                                 title = musicFromResponse.name.uppercase(),
                                 description = musicFromResponse.description.toString(),
-                                founders = musicFromResponse.founders as List<String>,
-                                gender = musicFromResponse.gender,
+                                artists = musicFromResponse.artists as List<String>,
+                                genre = musicFromResponse.genre,
                                 duration = musicFromResponse.duration,
 
                             )
@@ -52,8 +52,8 @@ class MusicRepository {
                 MusicRequest(
                     title = music.title,
                     description = music.description,
-                    founders = music.founders,
-                    gender = music.gender,
+                    artists = music.artists,
+                    genre = music.genre,
                     duration = music.duration
                 )
 
@@ -84,8 +84,8 @@ class MusicRepository {
                         id = musicId,
                         title = musicFromResponse.name,
                         description = musicFromResponse.description,
-                        founders = extractListOfFoundersFromResponse(musicFromResponse.founders),
-                        gender = musicFromResponse.gender,
+                        artists = extractListOfArtistsFromResponse(musicFromResponse.artists),
+                        genre = musicFromResponse.genre,
                         duration = musicFromResponse.duration
                     )
                 }
@@ -98,16 +98,16 @@ class MusicRepository {
         return null
     }
 
-    private fun extractListOfFoundersFromResponse(
-        foundersFromResponse: List<MusicResponseFounderItem>
+    private fun extractListOfArtistsFromResponse(
+        artistsFromResponse: List<MusicResponseArtistItem>
     ): List<String> {
 
-        val myFounders = mutableListOf<String>()
+        val myArtists = mutableListOf<String>()
 
-        for (founderObj in foundersFromResponse) {
-            myFounders.add(founderObj.founderName)
+        for (artistObj in artistsFromResponse) {
+            myArtists.add(artistObj.artistName)
         }
 
-        return myFounders
+        return myArtists
     }
 }

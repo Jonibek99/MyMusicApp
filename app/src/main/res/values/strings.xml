@@ -8,8 +8,8 @@
     <string name="Music_name_input_hint">Enter music title</string>
     <string name="Music_desc_input_hint">Enter Music Description\n</string>
     <string name="music_duration_input_hint">Enter duration</string>
-    <string name="Music_gender_input_hint">Enter gender</string>
-    <string name="add_new_founders_input_hint">Add founders</string>
+    <string name="Music_genre_input_hint">Enter genre</string>
+    <string name="add_new_artists_input_hint">Add artists</string>
     <string name="Music_all_fields_compulsory_warning">All fields are compulsory!</string>
     <string name="Music_title_input_hint">enter title of music</string>
     <string name="save_btn_text">Save</string>

@@ -16,7 +16,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.style.TextAlign
@@ -24,7 +23,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.mymusicapp.R
 import com.example.mymusicapp.data.MusicRepository
-import com.example.mymusicapp.models.Music
 
 @Composable
 fun DetailedView(musicId: String,
@@ -49,9 +47,9 @@ fun DetailedView(musicId: String,
         Description(description = music!!.description)
         MyDivider()
         Spacer(Modifier.height(16.dp))
-        Text("Founders: ")
-        Founders(founders =  music!!.founders)
-        Gender(gender = music!!.gender)
+        Text("Artists: ")
+        Artists(artists =  music!!.artists)
+        Genre(genre = music!!.genre)
         Duration(duration = music!!.duration)
 
     }
@@ -79,11 +77,11 @@ fun Description (description: String){
 }
 
 @Composable
-fun Founders (founders: List<String>){
+fun Artists (artists: List<String>){
     Column(modifier = Modifier.fillMaxWidth()) {
         var i = 0
-        for (founder in founders) {
-            FoundersTextView(founder = founder, ++i == founders.size)
+        for (artist in artists) {
+            ArtistsTextView(artist = artist , ++i == artists.size)
         }
     }
 }
@@ -102,9 +100,9 @@ fun Founders (founders: List<String>){
 
 
 @Composable
-fun Gender (gender: String){
+fun Genre (genre: String){
     Text(
-        text = "Gender: $gender",
+        text = "Genre: $genre",
         color = Color.Black,
         fontSize = 16.sp,
         fontFamily = FontFamily.Serif,
@@ -128,10 +126,10 @@ fun Duration (duration: Int){
 
 
 @Composable
-private fun FoundersTextView(founder: String, isTheLastOne: Boolean) {
+private fun ArtistsTextView(artist: String, isTheLastOne: Boolean) {
     Text(
         modifier = Modifier.padding(6.dp, 3.dp),
-        text = if (isTheLastOne) founder else "$founder,",
+        text = if (isTheLastOne) artist else "$artist,",
         color = Color.DarkGray,
         fontSize = 19.sp,
         fontFamily = FontFamily.SansSerif,

@@ -10,10 +10,10 @@ data class MusicResponse(
     @SerializedName("description")
     val description: String?,
     @SerializedName("text_list")
-    val founders: List<MusicResponseFounderItem>,
+    val artists: List<MusicResponseArtistItem>,
     @SerializedName("age")
     val duration: Int,
     @SerializedName("color")
-    val gender: String
+    val genre: String
 )
 
