@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">MyMusicApp</string>
+    <string name="detailed_view_budget_label">Budget: \u0024%1$d million</string>
+    <string name="title_activity_list_activity.kt">ListActivity.kt</string>
+    <string name="saved_success_msg">Success</string>
+    <string name="saved_fail_msg">Failed</string>
+    <string name="title_activity_add_new_Music">Add\n\n</string>
+    <string name="Music_name_input_hint">Enter music title</string>
+    <string name="Music_desc_input_hint">Enter Music Description\n</string>
+    <string name="music_price_input_hint">Enter cost of music</string>
+    <string name="music_size_input_hint">Enter size</string>
+    <string name="Music_gender_input_hint">Enter gender</string>
+    <string name="add_new_founders_input_hint">Add founders</string>
+    <string name="Music_all_fields_compulsory_warning">All fields are compulsory!</string>
+    <string name="Music_title_input_hint">enter title of music</string>
+    <string name="save_btn_text">Save</string>
+    <string name="add_new_button">Add new music</string>
+
+</resources>
