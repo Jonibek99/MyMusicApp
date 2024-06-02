@@ -4,9 +4,9 @@ import com.google.gson.annotations.SerializedName
 
 data class MusicResponseArtistItem(
     @SerializedName("id")
-    val actorEntryId: String,  ////todo tododo
+    val artistEntryId: String,
     @SerializedName("record_id")
-    val movieRecordId: String,
+    val musicRecordId: String,
     @SerializedName("value")
     val artistName: String
 )

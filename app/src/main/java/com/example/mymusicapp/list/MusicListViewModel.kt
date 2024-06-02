@@ -16,7 +16,7 @@ data class MusicListViewModel(
         getAllMusic()
     }
 
-    fun getAllMusic() {
+    private fun getAllMusic() {
         viewModelScope.launch {
             val music = musicRepository.getMusicList()
             musicLiveData.value = music

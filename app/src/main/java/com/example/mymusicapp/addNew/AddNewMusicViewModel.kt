@@ -18,7 +18,6 @@ class AddNewMusicViewModel(private val musicRepository: MusicRepository) : ViewM
     fun saveNewMusic(music: Music) {
         viewModelScope.launch {
             try {
-
                 val response = musicRepository.insertNewMusic(music)
                 insertResponseLiveData.value = response
 

@@ -24,8 +24,6 @@ fun Navigation(navController: NavHostController, context: Context) {
             )
         }
 
-
-
         composable(
             route = "detailedView/{MusicId}"
         ) { backStackEntry ->

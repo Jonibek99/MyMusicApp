@@ -40,7 +40,6 @@ fun MusicList(
     onAddNewMusicClick: () -> Unit,
     onMusicClick: (String) -> Unit = {}
 ) {
-
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -82,7 +81,7 @@ fun MusicList(
 }
 
 @Composable
-private fun MusicItem(music: Music, onMusicClick: (String)-> Unit) {
+private fun MusicItem(music: Music, onMusicClick: (String) -> Unit) {
     ElevatedCard(
         modifier = Modifier
             .padding(20.dp),
@@ -103,7 +102,7 @@ private fun MusicItem(music: Music, onMusicClick: (String)-> Unit) {
                 .clickable { onMusicClick(music.id) }
         ) {
             MusicItemName(name = music.title)
-            if (!music.description.isNullOrEmpty())
+            if (music.description.isNotEmpty())
                 MusicItemDesc(desc = music.description)
         }
     }

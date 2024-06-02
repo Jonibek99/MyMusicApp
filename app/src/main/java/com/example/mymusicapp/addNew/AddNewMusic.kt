@@ -60,17 +60,13 @@ fun AddNewMusic(
             DescriptionInput(description = description.value,
                 onDescriptionChange = { description.value = it })
             Spacer(modifier = Modifier.height(15.dp))
-            Spacer(modifier = Modifier.height(15.dp))
             Genre(genre = genre.value, onGenreChange = { genre.value = it })
             Spacer(modifier = Modifier.height(15.dp))
             ArtistsInput(artists = artists.value, onArtistsChange = { artists.value = it })
             Spacer(modifier = Modifier.height(15.dp))
             Duration(duration = duration.value, onDurationChanged = { duration.value = it })
-            Spacer(modifier = Modifier.height(15.dp))
+            Spacer(modifier = Modifier.height(30.dp))
 
-            // actors text input - comma separated 4x
-
-            Spacer(Modifier.height(16.dp))
             AddNewButton {
                 val constructedMusic: Music? = constructMusicIfInputValid(
                     titleInput = title.value,
@@ -144,7 +140,7 @@ private fun TitleInput(title: String, onTitleChange: (String) -> Unit) {
 private fun DescriptionInput(description: String, onDescriptionChange: (String) -> Unit) {
     TextField(modifier = Modifier
         .fillMaxWidth()
-        .height(150.dp),
+        .height(120.dp),
         colors = TextFieldDefaults.textFieldColors(
             textColor = Color.Black, containerColor = colorResource(id = R.color.white_900)
         ),
