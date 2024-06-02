@@ -3,8 +3,10 @@ package com.example.mymusicapp.detailedView
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.NavHostController
 import com.example.mymusicapp.data.MusicRepository
 import com.example.mymusicapp.models.Music
+import com.example.mymusicapp.navigation.Screens
 import kotlinx.coroutines.launch
 
 class DetailedViewModel(
@@ -25,6 +27,17 @@ class DetailedViewModel(
             if (musicId.isNotEmpty()) {
                 val music = musicRepository.getMusicById(musicId)
                 musicLiveData.value = music
+            }
+        }
+    }
+
+    fun deleteMusic(music: Music, navController: NavHostController) {
+        viewModelScope.launch {
+            val isDeleted = musicRepository.deleteMusic(music)
+            if (isDeleted) {
+                navController.navigate(Screens.MusicListScreen.route) {
+                    popUpTo(Screens.MusicListScreen.route) { inclusive = true }
+                }
             }
         }
     }

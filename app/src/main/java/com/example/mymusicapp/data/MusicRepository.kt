@@ -9,6 +9,7 @@ import com.example.mymusicapp.data.network.music.MusicRequest
 import com.example.mymusicapp.data.network.music.MusicResponse
 import com.example.mymusicapp.data.network.music.MusicResponseArtistItem
 import com.example.mymusicapp.models.Music
+
 class MusicRepository {
     suspend fun getMusicList(): List<Music> {
         val music = mutableListOf<Music>()
@@ -30,14 +31,13 @@ class MusicRepository {
                                 artists = musicFromResponse.artists as List<String>,
                                 genre = musicFromResponse.genre,
                                 duration = musicFromResponse.duration,
-
                             )
                         )
                     }
                 }
 
             }
-        }   catch (ex: Exception){
+        } catch (ex: Exception) {
             ex.printStackTrace()
         }
 
@@ -109,5 +109,24 @@ class MusicRepository {
         }
 
         return myArtists
+    }
+
+    suspend fun deleteMusic(music: Music): Boolean {
+        return try {
+            val response = RetrofitInstance.musicService.deleteMusic(
+                music.id,
+                "09974"
+            )
+            if (response.isSuccessful) {
+                Log.d("Delete_response", "Music deleted successfully")
+                true
+            } else {
+                Log.e("Delete_response", "Failed to delete music")
+                false
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+            false
+        }
     }
 }

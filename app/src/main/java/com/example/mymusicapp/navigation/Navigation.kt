@@ -29,7 +29,8 @@ fun Navigation(navController: NavHostController, context: Context) {
         composable(
             route = "detailedView/{MusicId}"
         ) { backStackEntry ->
-            DetailedView(musicId = backStackEntry.arguments?.getString("MusicId")!!)
+            DetailedView(musicId = backStackEntry.arguments?.getString("MusicId")!!,
+            navController = navController)
         }
     }
 }

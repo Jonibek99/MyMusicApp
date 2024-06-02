@@ -49,7 +49,7 @@ fun AddNewMusic(
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .background(color = Color.White)
+                .background(color = Color.Black)
                 .padding(16.dp)
                 .verticalScroll(rememberScrollState())
         ) {
@@ -97,7 +97,7 @@ fun AddNewMusic(
                 modifier = Modifier
                     .padding(20.dp)
                     .align(Alignment.Center),
-                fontSize = 19.sp,
+                fontSize = 22.sp,
                 text = if (response!!.status == "OK") stringResource(id = R.string.saved_success_msg)
                 else stringResource(id = R.string.saved_fail_msg)
             )
@@ -115,9 +115,9 @@ private fun CreateNewMusicPageTitle() {
     Text(
         modifier = Modifier.fillMaxWidth(),
         text = stringResource(id = R.string.title_activity_add_new_Music),
-        color = Color.Black,
+        color = Color.White,
         fontSize = 26.sp,
-        fontFamily = FontFamily.Serif,
+        fontFamily = FontFamily.Cursive,
         textAlign = TextAlign.Center
     )
 }
@@ -128,13 +128,13 @@ private fun CreateNewMusicPageTitle() {
 private fun TitleInput(title: String, onTitleChange: (String) -> Unit) {
     TextField(modifier = Modifier.fillMaxWidth(),
         colors = TextFieldDefaults.textFieldColors(
-            textColor = Color.Black, containerColor = colorResource(id = R.color.teal_200)
+            textColor = Color.Black, containerColor = colorResource(id = R.color.white_900)
         ),
         value = title,
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
         onValueChange = { onTitleChange(it) },
         label = {
-            Text(stringResource(id = R.string.Music_title_input_hint))
+            Text(stringResource(id = R.string.Music_title_input_hint), color = Color.Black)
         })
 }
 
@@ -146,13 +146,13 @@ private fun DescriptionInput(description: String, onDescriptionChange: (String) 
         .fillMaxWidth()
         .height(150.dp),
         colors = TextFieldDefaults.textFieldColors(
-            textColor = Color.Black, containerColor = colorResource(id = R.color.teal_200)
+            textColor = Color.Black, containerColor = colorResource(id = R.color.white_900)
         ),
         value = description,
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
         onValueChange = { onDescriptionChange(it) },
         label = {
-            Text(stringResource(id = R.string.Music_desc_input_hint))
+            Text(stringResource(id = R.string.Music_desc_input_hint), color = Color.Black)
         })
 }
 
@@ -167,13 +167,13 @@ private fun ArtistsInput(artists: String, onArtistsChange: (String) -> Unit) {
             .height(120.dp),
         colors = TextFieldDefaults.textFieldColors(
             textColor = Color.Black,
-            containerColor = colorResource(id = R.color.teal_200)
+            containerColor = colorResource(id = R.color.white_900)
         ),
         value = artists,
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
         onValueChange = { onArtistsChange(it) },
         label = {
-            Text(stringResource(id = R.string.add_new_artists_input_hint))
+            Text(stringResource(id = R.string.add_new_artists_input_hint), color = Color.Black)
         }
     )
 }
@@ -184,13 +184,13 @@ private fun ArtistsInput(artists: String, onArtistsChange: (String) -> Unit) {
 private fun Genre(genre: String, onGenreChange: (String) -> Unit) {
     TextField(modifier = Modifier.fillMaxWidth(),
         colors = TextFieldDefaults.textFieldColors(
-            textColor = Color.Black, containerColor = colorResource(id = R.color.teal_200)
+            textColor = Color.Black, containerColor = colorResource(id = R.color.white_900)
         ),
         value = genre,
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
         onValueChange = { onGenreChange(it) },
         label = {
-            Text(stringResource(id = R.string.Music_genre_input_hint))
+            Text(stringResource(id = R.string.Music_genre_input_hint), color = Color.Black)
         })
 }
 
@@ -200,13 +200,14 @@ private fun Genre(genre: String, onGenreChange: (String) -> Unit) {
 private fun Duration(duration: String, onDurationChanged: (String) -> Unit) {
     TextField(modifier = Modifier.fillMaxWidth(),
         colors = TextFieldDefaults.textFieldColors(
-            textColor = Color.Black, containerColor = colorResource(id = R.color.teal_200)
+            textColor = Color.Black,
+            containerColor = colorResource(id = R.color.white_900)
         ),
         value = duration,
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
         onValueChange = { onDurationChanged(it) },
         label = {
-            Text(stringResource(id = R.string.music_duration_input_hint))
+            Text(stringResource(id = R.string.music_duration_input_hint), color = Color.Black)
         })
 }
 
@@ -220,14 +221,14 @@ private fun AddNewButton(onClick: () -> Unit) {
         modifier = Modifier
             .fillMaxWidth()
             .height(85.dp)
-            .padding(vertical = 16.dp),
+            .padding(vertical = 10.dp),
         colors = ButtonDefaults.buttonColors(
-            containerColor = colorResource(id = R.color.teal_200), contentColor = Color.Black
+            containerColor = colorResource(id = R.color.teal_700), colorResource(id = R.color.white)
         )
 
     ) {
         Text(
-            fontSize = 17.sp, text = stringResource(id = R.string.save_btn_text)
+            fontSize = 22.sp, text = stringResource(id = R.string.save_btn_text)
         )
     }
 }
@@ -242,7 +243,7 @@ private fun constructMusicIfInputValid(
 ): Music? {
     if (titleInput.isNullOrEmpty() ||
         descriptionInput.isNullOrEmpty() ||
-        genreInput.isNullOrEmpty() ||
+        genreInput.isEmpty() ||
         artistsInput.isNullOrEmpty() ||
         durationInput.isNullOrEmpty()
     ) {

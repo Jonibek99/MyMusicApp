@@ -1,5 +1,6 @@
 package com.example.mymusicapp.list
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -43,6 +44,7 @@ fun MusicList(
     Box(
         modifier = Modifier
             .fillMaxSize()
+            .background(color = Color.Black)
     ) {
         val music by viewModel.musicLiveData.observeAsState()
 
@@ -57,21 +59,22 @@ fun MusicList(
             modifier = Modifier
                 .fillMaxWidth()
                 .align(Alignment.BottomCenter)
-                .padding(30.dp),
+                .padding(15.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Center
         ) {
             FloatingActionButton(
                 modifier = Modifier,
-                containerColor = colorResource(id = R.color.black),
+                containerColor = colorResource(id = R.color.white),
                 onClick = onAddNewMusicClick
             ) {
                 Text(
                     stringResource(id = R.string.add_new_button),
-                    modifier = Modifier.padding(15.dp, 5.dp),
-                    fontFamily = FontFamily.Serif,
-                    color = colorResource(id = R.color.white),
-                    fontSize = 16.sp
+                    modifier = Modifier.padding(25.dp, 10.dp),
+                    fontFamily = FontFamily.Cursive,
+                    fontWeight = FontWeight.Bold,
+                    color = colorResource(id = R.color.teal_200),
+                    fontSize = 30.sp
                 )
             }
         }
@@ -84,8 +87,8 @@ private fun MusicItem(music: Music, onMusicClick: (String)-> Unit) {
         modifier = Modifier
             .padding(20.dp),
         colors = CardDefaults.cardColors(
-            containerColor = colorResource(id = R.color.white), //Card background color
-            contentColor = Color.Black  //Card content color,e.g.text
+            containerColor = colorResource(id = R.color.teal_200), //Card background color
+            contentColor = Color.White  //Card content color,e.g.text
         ),
         elevation = CardDefaults.cardElevation(
             defaultElevation = 6.dp
@@ -111,8 +114,8 @@ private fun MusicItem(music: Music, onMusicClick: (String)-> Unit) {
 private fun MusicItemName(name: String) {
     Text(
         text = name,
-        fontSize = 21.sp,
-        fontFamily = FontFamily.Serif,
+        fontSize = 23.sp,
+        fontFamily = FontFamily.Cursive,
         textAlign = TextAlign.Center,
         fontWeight = FontWeight.Bold,
         modifier = Modifier.padding(0.dp, 0.dp, 0.dp, 5.dp)
@@ -125,9 +128,9 @@ private fun MusicItemDesc(desc: String) {
         text = desc,
         maxLines = 2,
         overflow = TextOverflow.Ellipsis,
-        color = Color.Black,
-        fontSize = 18.sp,
-        fontFamily = FontFamily.Serif,
+        color = Color.White,
+        fontSize = 25.sp,
+        fontFamily = FontFamily.Cursive,
         textAlign = TextAlign.Left
     )
 }

@@ -5,7 +5,9 @@ import com.example.mymusicapp.data.network.response.MyListResponse
 import com.example.mymusicapp.data.network.response.MyResponse
 import com.example.mymusicapp.data.network.music.MusicRequest
 import com.example.mymusicapp.data.network.music.MusicResponse
+import retrofit2.Response
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
@@ -27,4 +29,11 @@ interface MusicService {
         @Path("record_id") record_id: String,
         @Query("student_id") student_id: String
     ): MyItemResponse<MusicResponse>
+
+    @DELETE("records/{record_id}")
+    suspend fun deleteMusic(
+        @Path("record_id") record_id: String,
+        @Query("student_id") student_id: String
+    ): Response<Void>
+
 }
